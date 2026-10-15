@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="זרים וקופסאות של פרחי זפיר בעבודת יד מאת יוליה. הזמנה בוואטסאפ."><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta property="og:type" content="website"><meta property="og:title" content="Sweet Flowers · פרחים שאפשר לאכול"><meta property="og:description" content="זרים וקופסאות של פרחי זפיר בעבודת יד מאת יוליה. הזמנה בוואטסאפ."><meta name="description" content="זרים וקופסאות של פרחי זפיר בעבודת יד מאת יוליה. הזמנה בוואטסאפ."><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font-size:14px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
 <title>Sweet Flowers Yuliya</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -433,6 +433,24 @@ a.rsrc{text-decoration:none}
 .rev-stack span:nth-child(2){transform:rotate(7deg) translateX(26px)}
 .rev-stack span:nth-child(3){background:radial-gradient(circle at 50% 42%,var(--petal) 0 22%,var(--card) 23%)}
 
+/* card greeting */
+.card-note{border-radius:18px;background:var(--petal-2);padding:4px 14px;margin:2px 0 4px}
+.card-note summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:9px 0;font-weight:600;color:var(--berry)}
+.card-note summary::-webkit-details-marker{display:none}
+.card-note summary svg{width:20px;height:20px;flex:none}
+.card-note summary::after{content:"+";margin-inline-start:auto;font-size:1.3rem;line-height:1}
+.card-note[open] summary::after{content:"−"}
+.card-in{box-sizing:border-box;width:100%;font:inherit;padding:10px 12px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);resize:vertical}
+.card-in:focus{outline:2px solid var(--berry);outline-offset:1px}
+.card-hint{display:block;padding:6px 2px 10px;font-size:.82rem;color:var(--muted)}
+/* sticky order button on phones */
+.order-bar{display:none}
+@media (max-width:760px){
+  .order-bar{display:inline-flex;position:fixed;z-index:39;inset-inline-start:max(14px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));padding:13px 20px;font-size:1rem;transform:translateY(150%);opacity:0;transition:transform .45s cubic-bezier(.3,1.4,.5,1),opacity .3s}
+  .order-bar svg{width:20px;height:20px}
+  .order-bar.show{transform:none;opacity:1}
+  .qv-lock .order-bar{opacity:0;pointer-events:none}
+}
 /* payment methods */
 .pay{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px}
 .pay-t{font-weight:600;font-size:.92rem;margin-inline-end:4px}
@@ -798,6 +816,7 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--berry);dis
           <p data-i="p5_d"></p>
           <ul class="show-facts"><li data-i="p5_f1"></li><li data-i="p5_f2"></li><li data-i="p5_f3"></li></ul>
           <div class="show-fill" data-max="3"></div>
+          <details class="card-note"><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="m3 8 9 6 9-6"/></svg><span data-i="card_add"></span></summary><textarea class="card-in" rows="2" maxlength="200" dir="auto"></textarea><small class="card-hint" data-i="card_hint"></small></details>
           <div class="pricebox"><span class="off" dir="ltr" data-i="off"></span><s class="was" dir="ltr"><span data-i="was"></span> 470 ₪</s><div class="price">400 <small>₪</small></div></div>
           <div class="buy">
             <div class="qty" role="group"><button type="button" class="minus" aria-label="-">−</button><output>1</output><button type="button" class="plus" aria-label="+">+</button></div>
@@ -876,6 +895,7 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--berry);dis
     </div>
   </section>
 </main>
+<a class="btn primary order-bar wa" id="orderBar" target="_blank" rel="noopener" href="https://wa.me/972545311217" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg><span data-i="bar_order"></span></a>
 <button type="button" class="jump" id="jumpBtn" aria-label="">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
   <span class="jump-t"></span>
@@ -905,7 +925,7 @@ he:{
  p2_t:"קופסה מלבנית",p2_d:"שורה של פרחי זפיר, מושלמת כמתנה קטנה.",
  p3_t:"פרח אישי",p3_d:"פרח בודד באריזה משלו. מתנה לכל אורח באירוע.",
  p4_t:"זר בקופסת כובע",p4_d:"זר מלא בקופסה עגולה, הגודל והצבעים לבחירתכם.",p4_price:"המחיר לפי גודל",
- off:"‎-15%",was:"",best:"הכי נמכרת",per_unit:"ליחידה",p5_k:"הלהיט של יוליה",p5_t:"קופסת מתנה גדולה",p5_d:"פרחי זפיר גדולים, ניצנים ועלים, מסודרים ביד בקופסה לבנה עם חלון שקוף. מתנה שפותחים ונשארים בלי מילים.",p5_f1:"הרכב וגוונים לבחירה",p5_f2:"קופסה עם חלון שקוף",p5_f3:"מספיק לחלוק עם כולם",p6_k:"הכי גדולה",p6_t:"קופסת אקווריום 30×30",p6_d:"קופסה מרובעת וגדולה, 30 על 30 ס״מ, מלאה עד הסוף בפרחי זפיר וניצנים. שולחן מתוק שלם בקופסה אחת.",p6_f1:"30×30 ס״מ",p6_f2:"הרכב וגוונים לבחירה",p6_f3:"מושלמת לאירוע גדול",p7_k:"בוחרים גודל",p7_t:"זר עטוף",p7_d:"ענן של פרחי זפיר, עטוף בנייר ורוד וסרט מנצנץ. המחיר נקבע לפי קוטר הבסיס של הזר.",size_label:"קוטר הבסיס:",rev_kicker:"מה אומרים",rev_title:"לקוחות מספרים",rev_empty:"כאן יופיעו צילומי מסך של תגובות אמיתיות מלקוחות של יוליה. בינתיים אפשר לראות את התגובות באינסטגרם.",rev_cta:"לתגובות באינסטגרם",rev_count:"צילומי מסך אמיתיים מהוואטסאפ של יוליה",rev_tr:"בתרגום מרוסית",rev_alt:"צילום מסך של תגובת לקוחה בוואטסאפ",reels_title:"מקרוב יותר",reels_text:"ככה הזרים של יוליה נראים כשהם מגיעים אליכם.",reel1:"זר עטוף",reel2:"זר בקופסת כובע",reel3:"קופסת מתנה גדולה",watch_ig:"צפו באינסטגרם",watch_tt:"צפו בטיקטוק",sound:"סאונד",cat_all:"הכל",cat_box:"קופסאות",cat_bouquet:"זרים",cat_small:"מתנות קטנות",from:"החל מ-",details:"פרטים והזמנה",close:"סגירה",all_title:"כל המוצרים",in_photo:"בתמונה:",cm:"ס״מ",size_word:"גודל",order:"להזמנה",msg_hi:"היי יוליה! התאהבתי בפרחים שלך ואשמח להזמין:",msg_total:"סה״כ",msg_size:"מחיר לפי גודל",msg_date:"הזמן הכי מתאים עבורי לקבל את הזר:",msg_colors:"הצבעים שהכי ישמחו את הלב:",msg_end:"תודה, מחכה לזה בקוצר רוח",sale:"15% הנחה על כל הקופסאות",box_note:"המחירים בשקלים. בגלל עבודת היד, מזמינים לפחות שבועיים לפני האירוע.",
+ off:"‎-15%",was:"",best:"הכי נמכרת",per_unit:"ליחידה",p5_k:"הלהיט של יוליה",p5_t:"קופסת מתנה גדולה",p5_d:"פרחי זפיר גדולים, ניצנים ועלים, מסודרים ביד בקופסה לבנה עם חלון שקוף. מתנה שפותחים ונשארים בלי מילים.",p5_f1:"הרכב וגוונים לבחירה",p5_f2:"קופסה עם חלון שקוף",p5_f3:"מספיק לחלוק עם כולם",p6_k:"הכי גדולה",p6_t:"קופסת אקווריום 30×30",p6_d:"קופסה מרובעת וגדולה, 30 על 30 ס״מ, מלאה עד הסוף בפרחי זפיר וניצנים. שולחן מתוק שלם בקופסה אחת.",p6_f1:"30×30 ס״מ",p6_f2:"הרכב וגוונים לבחירה",p6_f3:"מושלמת לאירוע גדול",p7_k:"בוחרים גודל",p7_t:"זר עטוף",p7_d:"ענן של פרחי זפיר, עטוף בנייר ורוד וסרט מנצנץ. המחיר נקבע לפי קוטר הבסיס של הזר.",size_label:"קוטר הבסיס:",card_add:"להוסיף ברכה לכרטיס",card_ph:"למשל: מזל טוב, אמא! אוהבים המון",card_hint:"הברכה תיכנס להודעה ליוליה, והיא תכתוב אותה על הכרטיס.",msg_card:"ברכה לכרטיס:",bar_order:"להזמנה בוואטסאפ",rev_kicker:"מה אומרים",rev_title:"לקוחות מספרים",rev_empty:"כאן יופיעו צילומי מסך של תגובות אמיתיות מלקוחות של יוליה. בינתיים אפשר לראות את התגובות באינסטגרם.",rev_cta:"לתגובות באינסטגרם",rev_count:"צילומי מסך אמיתיים מהוואטסאפ של יוליה",rev_tr:"בתרגום מרוסית",rev_alt:"צילום מסך של תגובת לקוחה בוואטסאפ",reels_title:"מקרוב יותר",reels_text:"ככה הזרים של יוליה נראים כשהם מגיעים אליכם.",reel1:"זר עטוף",reel2:"זר בקופסת כובע",reel3:"קופסת מתנה גדולה",watch_ig:"צפו באינסטגרם",watch_tt:"צפו בטיקטוק",sound:"סאונד",cat_all:"הכל",cat_box:"קופסאות",cat_bouquet:"זרים",cat_small:"מתנות קטנות",from:"החל מ-",details:"פרטים והזמנה",close:"סגירה",all_title:"כל המוצרים",in_photo:"בתמונה:",cm:"ס״מ",size_word:"גודל",order:"להזמנה",msg_hi:"היי יוליה! התאהבתי בפרחים שלך ואשמח להזמין:",msg_total:"סה״כ",msg_size:"מחיר לפי גודל",msg_date:"הזמן הכי מתאים עבורי לקבל את הזר:",msg_colors:"הצבעים שהכי ישמחו את הלב:",msg_end:"תודה, מחכה לזה בקוצר רוח",sale:"15% הנחה על כל הקופסאות",box_note:"המחירים בשקלים. בגלל עבודת היד, מזמינים לפחות שבועיים לפני האירוע.",
  soc_kicker:"עוד פרחים",soc_title:"עקבו אחרי יוליה",soc_text:"הזרים החדשים עולים קודם לאינסטגרם ולטיקטוק. שווה לעקוב ולקבל השראה לאירוע הבא.",
  ct_title:"בואו נתכנן את הזר שלכם",ct_text:"ההזמנות רק בהודעה. כתבו ליוליה בוואטסאפ על האירוע, הצבעים והתאריך, והיא תחזור אליכם עם הצעה.",pay_title:"אפשרויות תשלום:",pay_cash:"מזומן",
  ct_who:"יוליה",copy:"העתקת מספר",copied:"המספר הועתק",
@@ -944,7 +964,7 @@ ru:{
  p2_t:"Прямоугольная",p2_d:"Ряд зефирных цветов — идеальный небольшой подарок.",
  p3_t:"Персональная",p3_d:"Один цветок в своей упаковке. Подарок каждому гостю.",
  p4_t:"Букет в шляпной коробке",p4_d:"Пышный букет в круглой коробке, размер и цвета на ваш выбор.",p4_price:"Цена по размеру",
- off:"‎-15%",was:"",best:"Хит продаж",per_unit:"за штуку",p5_k:"Хит Юлии",p5_t:"Большая подарочная коробка",p5_d:"Крупные зефирные цветы, бутоны и листики, собранные вручную в белой коробке с прозрачным окошком. Подарок, от которого захватывает дух.",p5_f1:"Состав и цвета на выбор",p5_f2:"Коробка с прозрачным окошком",p5_f3:"Хватит, чтобы угостить всех",p6_k:"Самая большая",p6_t:"Коробка-аквариум 30×30",p6_d:"Большая квадратная коробка 30 на 30 см, до краёв наполненная зефирными цветами и бутонами. Целый сладкий стол в одной коробке.",p6_f1:"30×30 см",p6_f2:"Состав и цвета на выбор",p6_f3:"Для большого праздника",p7_k:"Выберите размер",p7_t:"Букет в упаковке",p7_d:"Облако зефирных цветов в розовой упаковке с переливающейся лентой. Цена зависит от размера основы букета.",size_label:"Размер основы:",rev_kicker:"Отзывы",rev_title:"Говорят клиенты",rev_empty:"Здесь появятся скриншоты настоящих отзывов клиентов Юлии. А пока отзывы можно посмотреть в Instagram.",rev_cta:"Отзывы в Instagram",rev_count:"настоящие скриншоты из WhatsApp Юлии",rev_tr:"",rev_alt:"Скриншот отзыва клиентки в WhatsApp",reels_title:"Поближе",reels_text:"Так выглядят букеты Юлии, когда приезжают к вам.",reel1:"Букет в упаковке",reel2:"Букет в шляпной коробке",reel3:"Большая подарочная коробка",watch_ig:"Смотреть в Instagram",watch_tt:"Смотреть в TikTok",sound:"Звук",cat_all:"Все",cat_box:"Коробки",cat_bouquet:"Букеты",cat_small:"Маленькие подарки",from:"от",details:"Подробнее и заказ",close:"Закрыть",all_title:"Все товары",in_photo:"На фото:",cm:"см",size_word:"размер",order:"Заказать",msg_hi:"Юлия, здравствуйте! Ваши цветы покорили моё сердце, хочу заказать:",msg_total:"итого",msg_size:"цена по размеру",msg_date:"Самое удобное для меня время получить букет:",msg_colors:"Цвета, которые порадуют сердце:",msg_end:"Спасибо, жду с нетерпением",sale:"Скидка 15% на все коробки",box_note:"Цены в шекелях. Каждая композиция — ручная работа с душой, поэтому заказ минимум за 2 недели.",
+ off:"‎-15%",was:"",best:"Хит продаж",per_unit:"за штуку",p5_k:"Хит Юлии",p5_t:"Большая подарочная коробка",p5_d:"Крупные зефирные цветы, бутоны и листики, собранные вручную в белой коробке с прозрачным окошком. Подарок, от которого захватывает дух.",p5_f1:"Состав и цвета на выбор",p5_f2:"Коробка с прозрачным окошком",p5_f3:"Хватит, чтобы угостить всех",p6_k:"Самая большая",p6_t:"Коробка-аквариум 30×30",p6_d:"Большая квадратная коробка 30 на 30 см, до краёв наполненная зефирными цветами и бутонами. Целый сладкий стол в одной коробке.",p6_f1:"30×30 см",p6_f2:"Состав и цвета на выбор",p6_f3:"Для большого праздника",p7_k:"Выберите размер",p7_t:"Букет в упаковке",p7_d:"Облако зефирных цветов в розовой упаковке с переливающейся лентой. Цена зависит от размера основы букета.",size_label:"Размер основы:",card_add:"Добавить текст для открытки",card_ph:"Например: С днём рождения, мама! Любим тебя",card_hint:"Текст попадёт в сообщение Юлии, и она напишет его на открытке.",msg_card:"Текст для открытки:",bar_order:"Заказать в WhatsApp",rev_kicker:"Отзывы",rev_title:"Говорят клиенты",rev_empty:"Здесь появятся скриншоты настоящих отзывов клиентов Юлии. А пока отзывы можно посмотреть в Instagram.",rev_cta:"Отзывы в Instagram",rev_count:"настоящие скриншоты из WhatsApp Юлии",rev_tr:"",rev_alt:"Скриншот отзыва клиентки в WhatsApp",reels_title:"Поближе",reels_text:"Так выглядят букеты Юлии, когда приезжают к вам.",reel1:"Букет в упаковке",reel2:"Букет в шляпной коробке",reel3:"Большая подарочная коробка",watch_ig:"Смотреть в Instagram",watch_tt:"Смотреть в TikTok",sound:"Звук",cat_all:"Все",cat_box:"Коробки",cat_bouquet:"Букеты",cat_small:"Маленькие подарки",from:"от",details:"Подробнее и заказ",close:"Закрыть",all_title:"Все товары",in_photo:"На фото:",cm:"см",size_word:"размер",order:"Заказать",msg_hi:"Юлия, здравствуйте! Ваши цветы покорили моё сердце, хочу заказать:",msg_total:"итого",msg_size:"цена по размеру",msg_date:"Самое удобное для меня время получить букет:",msg_colors:"Цвета, которые порадуют сердце:",msg_end:"Спасибо, жду с нетерпением",sale:"Скидка 15% на все коробки",box_note:"Цены в шекелях. Каждая композиция — ручная работа с душой, поэтому заказ минимум за 2 недели.",
  soc_kicker:"Больше цветов",soc_title:"Подписывайтесь на Юлию",soc_text:"Новые букеты сначала появляются в Instagram и TikTok. Подпишитесь и вдохновляйтесь к следующему празднику.",
  ct_title:"Давайте соберём ваш букет",ct_text:"Заказы только сообщением. Напишите Юлии в WhatsApp о празднике, цветах и дате, и она пришлёт предложение.",pay_title:"Оплата:",pay_cash:"Наличные",
  ct_who:"Юлия",copy:"Скопировать номер",copied:"Номер скопирован",
@@ -1054,9 +1074,19 @@ document.querySelectorAll(".prod.sized").forEach(card=>{
       const rtl=document.documentElement.dir==="rtl", n=btns[(i+(rtl?d:-d)+btns.length)%btns.length]; n.focus(); pick(n);});});
 });
 
+/* optional greeting for the card: typed once, goes into every order message */
+let cardMsg="";
+function cardLine(){const v=cardMsg.trim(); return v?`\n\n${T[lang].msg_card}\n"${v}"`:"";}
+function bindCard(root,onChange){
+  root.querySelectorAll(".card-in").forEach(ta=>{
+    ta.placeholder=T[lang].card_ph; if(ta.value!==cardMsg) ta.value=cardMsg;
+    ta.oninput=()=>{cardMsg=ta.value; onChange();};
+  });
+}
 /* order buttons: product + quantity straight into Yulia's WhatsApp */
 function updateOrders(){
   document.querySelectorAll(".prod[data-key]").forEach(card=>{
+    if(!card.dataset.cardBound){card.dataset.cardBound=1; bindCard(card,()=>updateOrders());} else card.querySelectorAll(".card-in").forEach(ta=>ta.placeholder=T[lang].card_ph);
     const t=T[lang], q=+card.querySelector("output").value||1, price=+card.dataset.price, base=t[card.dataset.key+"_t"];
     const name=card.dataset.size?`${base}, ${t.size_word} ${card.dataset.size} (${card.dataset.cm} ${t.cm})`:base;
     card.querySelectorAll(".size .cm").forEach(c=>c.textContent=`${c.parentNode.dataset.cm} ${t.cm}`);
@@ -1065,7 +1095,7 @@ function updateOrders(){
     const line=price?`• ${name} × ${q} — ${price} ₪${q>1?` (${t.msg_total} ${price*q} ₪)`:""}`:`• ${name} × ${q} (${t.msg_size})`;
     const fb=card.querySelector(".show-fill"), fmax=fb?+fb.dataset.max:0, fcur=fb?+(card.dataset.fill||0):0;
     if(fb){ fb.innerHTML=fillPicker(fmax,fcur); fb.querySelectorAll(".fopt").forEach(b=>b.onclick=()=>{card.dataset.fill=b.dataset.fill;updateOrders();}); }
-    const msg=`${t.msg_hi}\n\n${line}${fmax?"\n"+fillLine(fcur):""}\n\n${t.msg_end}`;
+    const msg=`${t.msg_hi}\n\n${line}${fmax?"\n"+fillLine(fcur):""}${cardLine()}\n\n${t.msg_end}`;
     card.querySelector(".order").href="https://wa.me/972545311217?text="+encodeURIComponent(msg);
     if(price){
       const pr=card.querySelector(".price"), was=card.querySelector(".was"), unit=card.querySelector(".unit");
@@ -1208,7 +1238,7 @@ function orderText(p,size,q,fill){
   if(p.sizes){const s=p.sizes.find(x=>x[0]===size); name+=`, ${t.size_word} ${s[0]} (${s[1]} ${t.cm})`;}
   const line=price?`• ${name} × ${q} — ${price} ₪${q>1?` (${t.msg_total} ${price*q} ₪)`:""}`:`• ${name} × ${q} (${t.msg_size})`;
   const fl=fillMax(p,size)?`\n${fillLine(fill||0)}`:"";
-  return "https://wa.me/972545311217?text="+encodeURIComponent(`${t.msg_hi}\n\n${line}${fl}\n\n${t.msg_end}`);
+  return "https://wa.me/972545311217?text="+encodeURIComponent(`${t.msg_hi}\n\n${line}${fl}${cardLine()}\n\n${t.msg_end}`);
 }
 function tagText(p){const t=T[lang];return p.tag==="best"?"★ "+t.best:p.tag==="big"?t.p6_k:p.sizes?"S · M · L":"";}
 
@@ -1261,7 +1291,7 @@ function renderQV(){
       ${kicker?`<span class="show-kicker">${kicker}</span>`:""}
       <h3 id="qvTitle">${t[p.id+"_t"]}</h3>
       <p>${t[p.id+"_d"]}</p>
-      ${facts}${sizes}${fillPicker(fillMax(p,size),qvState.fill)}${priceBox}
+      ${facts}${sizes}${fillPicker(fillMax(p,size),qvState.fill)}<details class="card-note"${cardMsg?" open":""}><summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="m3 8 9 6 9-6"/></svg><span>${t.card_add}</span></summary><textarea class="card-in" rows="2" maxlength="200" dir="auto"></textarea><small class="card-hint">${t.card_hint}</small></details>${priceBox}
       <div class="buy">
         <div class="qty" role="group"><button type="button" class="minus" aria-label="-">−</button><output>${q}</output><button type="button" class="plus" aria-label="+">+</button></div>
         <a class="btn primary order" target="_blank" rel="noopener" href="${orderText(p,size,q,qvState.fill)}"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg><span>${t.order}</span></a>
@@ -1272,6 +1302,7 @@ function renderQV(){
   qvPanel.querySelectorAll(".fopt").forEach(b=>b.onclick=()=>{qvState.fill=+b.dataset.fill;renderQV();});
   qvPanel.querySelectorAll(".size").forEach(b=>b.onclick=()=>{qvState.size=b.dataset.size;qvState.fill=Math.min(qvState.fill,fillMax(p,b.dataset.size));renderQV();bump(".price");bump(".qv-art","bump");});
   qvPanel.querySelectorAll("[data-close]").forEach(b=>b.onclick=closeQV);
+  bindCard(qvPanel,()=>{qvPanel.querySelector(".order").href=orderText(p,size,qvState.q,qvState.fill);});
 }
 function bump(sel,cls="bump"){const el=qvPanel.querySelector(sel); if(!el)return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls);}
 function openQV(id,opener){
@@ -1322,6 +1353,16 @@ function renderReviews(){
 }
 renderReviews();
 
+/* ---- sticky order button: after the opening screen, hidden near the order section ---- */
+(function(){
+  const bar=document.getElementById("orderBar"), ct=document.getElementById("contact"); let on=null;
+  function upd(){
+    const r=ct.getBoundingClientRect(), show=scrollY>innerHeight*.9&&!(r.top<innerHeight&&r.bottom>0);
+    if(show===on) return; on=show; bar.classList.toggle("show",show);
+    bar.setAttribute("aria-hidden",!show); bar.tabIndex=show?0:-1;
+  }
+  addEventListener("scroll",upd,{passive:true}); addEventListener("resize",upd); upd();
+})();
 /* ---- floating arrow: down to the price list, then back up to the top ---- */
 const jumpBtn=document.getElementById("jumpBtn"), priceSec=document.getElementById("boxes");
 let jumpUp=null;
