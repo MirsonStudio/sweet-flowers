@@ -412,12 +412,19 @@ a.rsrc{text-decoration:none}
 /* reviews: real screenshots only */
 .reviews-sec{background:var(--petal-2);padding-bottom:110px}
 .rev-summary{display:inline-flex;align-items:center;gap:12px;margin:6px 0 26px;padding:10px 20px;border-radius:99px;background:var(--card);box-shadow:var(--shadow);font-weight:600}
-.rev-summary .stars{color:#e5a823;letter-spacing:2px;font-size:1.15rem}
+.rev-summary svg{width:22px;height:22px;color:#25d366;flex:none}
 .rev-wall{columns:3 260px;column-gap:20px}
 .rev-shot{break-inside:avoid;margin:0 0 20px;padding:10px;border-radius:28px;background:var(--card);box-shadow:var(--shadow);transform:rotate(var(--r,0deg));transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
 .rev-shot:hover{transform:rotate(0) translateY(-4px) scale(1.02)}
 .rev-shot img{display:block;width:100%;border-radius:20px}
-.rev-shot figcaption{padding:8px 6px 2px;font-size:.88rem;color:var(--muted)}
+.rev-shot figcaption{padding:12px 8px 4px;font-size:.95rem;line-height:1.5;color:var(--ink)}
+.rev-shot figcaption small{display:block;margin-bottom:2px;font-size:.78rem;color:var(--muted)}
+@media (max-width:640px){
+  .rev-wall{columns:auto;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-16px;padding:6px 16px 14px;scrollbar-width:none}
+  .rev-wall::-webkit-scrollbar{display:none}
+  .rev-shot{flex:0 0 80%;margin:0;scroll-snap-align:center;transform:none}
+  .rev-shot img{max-height:62vh;object-fit:cover;object-position:top}
+}
 .rev-empty{display:grid;justify-items:center;gap:16px;text-align:center;padding:26px 16px 10px}
 .rev-empty p{margin:0;max-width:30rem;color:var(--muted)}
 .rev-stack{position:relative;width:150px;height:120px}
@@ -898,7 +905,7 @@ he:{
  p2_t:"קופסה מלבנית",p2_d:"שורה של פרחי זפיר, מושלמת כמתנה קטנה.",
  p3_t:"פרח אישי",p3_d:"פרח בודד באריזה משלו. מתנה לכל אורח באירוע.",
  p4_t:"זר בקופסת כובע",p4_d:"זר מלא בקופסה עגולה, הגודל והצבעים לבחירתכם.",p4_price:"המחיר לפי גודל",
- off:"‎-15%",was:"",best:"הכי נמכרת",per_unit:"ליחידה",p5_k:"הלהיט של יוליה",p5_t:"קופסת מתנה גדולה",p5_d:"פרחי זפיר גדולים, ניצנים ועלים, מסודרים ביד בקופסה לבנה עם חלון שקוף. מתנה שפותחים ונשארים בלי מילים.",p5_f1:"הרכב וגוונים לבחירה",p5_f2:"קופסה עם חלון שקוף",p5_f3:"מספיק לחלוק עם כולם",p6_k:"הכי גדולה",p6_t:"קופסת אקווריום 30×30",p6_d:"קופסה מרובעת וגדולה, 30 על 30 ס״מ, מלאה עד הסוף בפרחי זפיר וניצנים. שולחן מתוק שלם בקופסה אחת.",p6_f1:"30×30 ס״מ",p6_f2:"הרכב וגוונים לבחירה",p6_f3:"מושלמת לאירוע גדול",p7_k:"בוחרים גודל",p7_t:"זר עטוף",p7_d:"ענן של פרחי זפיר, עטוף בנייר ורוד וסרט מנצנץ. המחיר נקבע לפי קוטר הבסיס של הזר.",size_label:"קוטר הבסיס:",rev_kicker:"מה אומרים",rev_title:"לקוחות מספרים",rev_empty:"כאן יופיעו צילומי מסך של תגובות אמיתיות מלקוחות של יוליה. בינתיים אפשר לראות את התגובות באינסטגרם.",rev_cta:"לתגובות באינסטגרם",rev_count:"תגובות של לקוחות",reels_title:"מקרוב יותר",reels_text:"ככה הזרים של יוליה נראים כשהם מגיעים אליכם.",reel1:"זר עטוף",reel2:"זר בקופסת כובע",reel3:"קופסת מתנה גדולה",watch_ig:"צפו באינסטגרם",watch_tt:"צפו בטיקטוק",sound:"סאונד",cat_all:"הכל",cat_box:"קופסאות",cat_bouquet:"זרים",cat_small:"מתנות קטנות",from:"החל מ-",details:"פרטים והזמנה",close:"סגירה",all_title:"כל המוצרים",in_photo:"בתמונה:",cm:"ס״מ",size_word:"גודל",order:"להזמנה",msg_hi:"היי יוליה! התאהבתי בפרחים שלך ואשמח להזמין:",msg_total:"סה״כ",msg_size:"מחיר לפי גודל",msg_date:"הזמן הכי מתאים עבורי לקבל את הזר:",msg_colors:"הצבעים שהכי ישמחו את הלב:",msg_end:"תודה, מחכה לזה בקוצר רוח",sale:"15% הנחה על כל הקופסאות",box_note:"המחירים בשקלים. בגלל עבודת היד, מזמינים לפחות שבועיים לפני האירוע.",
+ off:"‎-15%",was:"",best:"הכי נמכרת",per_unit:"ליחידה",p5_k:"הלהיט של יוליה",p5_t:"קופסת מתנה גדולה",p5_d:"פרחי זפיר גדולים, ניצנים ועלים, מסודרים ביד בקופסה לבנה עם חלון שקוף. מתנה שפותחים ונשארים בלי מילים.",p5_f1:"הרכב וגוונים לבחירה",p5_f2:"קופסה עם חלון שקוף",p5_f3:"מספיק לחלוק עם כולם",p6_k:"הכי גדולה",p6_t:"קופסת אקווריום 30×30",p6_d:"קופסה מרובעת וגדולה, 30 על 30 ס״מ, מלאה עד הסוף בפרחי זפיר וניצנים. שולחן מתוק שלם בקופסה אחת.",p6_f1:"30×30 ס״מ",p6_f2:"הרכב וגוונים לבחירה",p6_f3:"מושלמת לאירוע גדול",p7_k:"בוחרים גודל",p7_t:"זר עטוף",p7_d:"ענן של פרחי זפיר, עטוף בנייר ורוד וסרט מנצנץ. המחיר נקבע לפי קוטר הבסיס של הזר.",size_label:"קוטר הבסיס:",rev_kicker:"מה אומרים",rev_title:"לקוחות מספרים",rev_empty:"כאן יופיעו צילומי מסך של תגובות אמיתיות מלקוחות של יוליה. בינתיים אפשר לראות את התגובות באינסטגרם.",rev_cta:"לתגובות באינסטגרם",rev_count:"צילומי מסך אמיתיים מהוואטסאפ של יוליה",rev_tr:"בתרגום מרוסית",rev_alt:"צילום מסך של תגובת לקוחה בוואטסאפ",reels_title:"מקרוב יותר",reels_text:"ככה הזרים של יוליה נראים כשהם מגיעים אליכם.",reel1:"זר עטוף",reel2:"זר בקופסת כובע",reel3:"קופסת מתנה גדולה",watch_ig:"צפו באינסטגרם",watch_tt:"צפו בטיקטוק",sound:"סאונד",cat_all:"הכל",cat_box:"קופסאות",cat_bouquet:"זרים",cat_small:"מתנות קטנות",from:"החל מ-",details:"פרטים והזמנה",close:"סגירה",all_title:"כל המוצרים",in_photo:"בתמונה:",cm:"ס״מ",size_word:"גודל",order:"להזמנה",msg_hi:"היי יוליה! התאהבתי בפרחים שלך ואשמח להזמין:",msg_total:"סה״כ",msg_size:"מחיר לפי גודל",msg_date:"הזמן הכי מתאים עבורי לקבל את הזר:",msg_colors:"הצבעים שהכי ישמחו את הלב:",msg_end:"תודה, מחכה לזה בקוצר רוח",sale:"15% הנחה על כל הקופסאות",box_note:"המחירים בשקלים. בגלל עבודת היד, מזמינים לפחות שבועיים לפני האירוע.",
  soc_kicker:"עוד פרחים",soc_title:"עקבו אחרי יוליה",soc_text:"הזרים החדשים עולים קודם לאינסטגרם ולטיקטוק. שווה לעקוב ולקבל השראה לאירוע הבא.",
  ct_title:"בואו נתכנן את הזר שלכם",ct_text:"ההזמנות רק בהודעה. כתבו ליוליה בוואטסאפ על האירוע, הצבעים והתאריך, והיא תחזור אליכם עם הצעה.",pay_title:"אפשרויות תשלום:",pay_cash:"מזומן",
  ct_who:"יוליה",copy:"העתקת מספר",copied:"המספר הועתק",
@@ -937,7 +944,7 @@ ru:{
  p2_t:"Прямоугольная",p2_d:"Ряд зефирных цветов — идеальный небольшой подарок.",
  p3_t:"Персональная",p3_d:"Один цветок в своей упаковке. Подарок каждому гостю.",
  p4_t:"Букет в шляпной коробке",p4_d:"Пышный букет в круглой коробке, размер и цвета на ваш выбор.",p4_price:"Цена по размеру",
- off:"‎-15%",was:"",best:"Хит продаж",per_unit:"за штуку",p5_k:"Хит Юлии",p5_t:"Большая подарочная коробка",p5_d:"Крупные зефирные цветы, бутоны и листики, собранные вручную в белой коробке с прозрачным окошком. Подарок, от которого захватывает дух.",p5_f1:"Состав и цвета на выбор",p5_f2:"Коробка с прозрачным окошком",p5_f3:"Хватит, чтобы угостить всех",p6_k:"Самая большая",p6_t:"Коробка-аквариум 30×30",p6_d:"Большая квадратная коробка 30 на 30 см, до краёв наполненная зефирными цветами и бутонами. Целый сладкий стол в одной коробке.",p6_f1:"30×30 см",p6_f2:"Состав и цвета на выбор",p6_f3:"Для большого праздника",p7_k:"Выберите размер",p7_t:"Букет в упаковке",p7_d:"Облако зефирных цветов в розовой упаковке с переливающейся лентой. Цена зависит от размера основы букета.",size_label:"Размер основы:",rev_kicker:"Отзывы",rev_title:"Говорят клиенты",rev_empty:"Здесь появятся скриншоты настоящих отзывов клиентов Юлии. А пока отзывы можно посмотреть в Instagram.",rev_cta:"Отзывы в Instagram",rev_count:"отзывов клиентов",reels_title:"Поближе",reels_text:"Так выглядят букеты Юлии, когда приезжают к вам.",reel1:"Букет в упаковке",reel2:"Букет в шляпной коробке",reel3:"Большая подарочная коробка",watch_ig:"Смотреть в Instagram",watch_tt:"Смотреть в TikTok",sound:"Звук",cat_all:"Все",cat_box:"Коробки",cat_bouquet:"Букеты",cat_small:"Маленькие подарки",from:"от",details:"Подробнее и заказ",close:"Закрыть",all_title:"Все товары",in_photo:"На фото:",cm:"см",size_word:"размер",order:"Заказать",msg_hi:"Юлия, здравствуйте! Ваши цветы покорили моё сердце, хочу заказать:",msg_total:"итого",msg_size:"цена по размеру",msg_date:"Самое удобное для меня время получить букет:",msg_colors:"Цвета, которые порадуют сердце:",msg_end:"Спасибо, жду с нетерпением",sale:"Скидка 15% на все коробки",box_note:"Цены в шекелях. Каждая композиция — ручная работа с душой, поэтому заказ минимум за 2 недели.",
+ off:"‎-15%",was:"",best:"Хит продаж",per_unit:"за штуку",p5_k:"Хит Юлии",p5_t:"Большая подарочная коробка",p5_d:"Крупные зефирные цветы, бутоны и листики, собранные вручную в белой коробке с прозрачным окошком. Подарок, от которого захватывает дух.",p5_f1:"Состав и цвета на выбор",p5_f2:"Коробка с прозрачным окошком",p5_f3:"Хватит, чтобы угостить всех",p6_k:"Самая большая",p6_t:"Коробка-аквариум 30×30",p6_d:"Большая квадратная коробка 30 на 30 см, до краёв наполненная зефирными цветами и бутонами. Целый сладкий стол в одной коробке.",p6_f1:"30×30 см",p6_f2:"Состав и цвета на выбор",p6_f3:"Для большого праздника",p7_k:"Выберите размер",p7_t:"Букет в упаковке",p7_d:"Облако зефирных цветов в розовой упаковке с переливающейся лентой. Цена зависит от размера основы букета.",size_label:"Размер основы:",rev_kicker:"Отзывы",rev_title:"Говорят клиенты",rev_empty:"Здесь появятся скриншоты настоящих отзывов клиентов Юлии. А пока отзывы можно посмотреть в Instagram.",rev_cta:"Отзывы в Instagram",rev_count:"настоящие скриншоты из WhatsApp Юлии",rev_tr:"",rev_alt:"Скриншот отзыва клиентки в WhatsApp",reels_title:"Поближе",reels_text:"Так выглядят букеты Юлии, когда приезжают к вам.",reel1:"Букет в упаковке",reel2:"Букет в шляпной коробке",reel3:"Большая подарочная коробка",watch_ig:"Смотреть в Instagram",watch_tt:"Смотреть в TikTok",sound:"Звук",cat_all:"Все",cat_box:"Коробки",cat_bouquet:"Букеты",cat_small:"Маленькие подарки",from:"от",details:"Подробнее и заказ",close:"Закрыть",all_title:"Все товары",in_photo:"На фото:",cm:"см",size_word:"размер",order:"Заказать",msg_hi:"Юлия, здравствуйте! Ваши цветы покорили моё сердце, хочу заказать:",msg_total:"итого",msg_size:"цена по размеру",msg_date:"Самое удобное для меня время получить букет:",msg_colors:"Цвета, которые порадуют сердце:",msg_end:"Спасибо, жду с нетерпением",sale:"Скидка 15% на все коробки",box_note:"Цены в шекелях. Каждая композиция — ручная работа с душой, поэтому заказ минимум за 2 недели.",
  soc_kicker:"Больше цветов",soc_title:"Подписывайтесь на Юлию",soc_text:"Новые букеты сначала появляются в Instagram и TikTok. Подпишитесь и вдохновляйтесь к следующему празднику.",
  ct_title:"Давайте соберём ваш букет",ct_text:"Заказы только сообщением. Напишите Юлии в WhatsApp о празднике, цветах и дате, и она пришлёт предложение.",pay_title:"Оплата:",pay_cash:"Наличные",
  ct_who:"Юлия",copy:"Скопировать номер",copied:"Номер скопирован",
@@ -1292,14 +1299,26 @@ addEventListener("keydown",e=>{if(e.key==="Escape") closeQV();});
 function onLangCatalog(){if(typeof setAdLang==="function"&&typeof adVid!=="undefined"){setAdLang();syncAdSound();} if(typeof applyTheme==="function"&&typeof darkOn!=="undefined") applyTheme(darkOn,false); renderCatalog(); renderReels(); renderMenuCats(); if(typeof updateJump==="function") updateJump(true); if(typeof renderReviews==="function") renderReviews(); if(qvState) renderQV();}
 
 /* ---- reviews: add real screenshots here, e.g. {img:"rev/1.jpg"} ---- */
-const REVIEWS=[];
+const REVIEWS=[
+ {img:"rev/1.webp",he:"תודה רבה על היופי הזה! במציאות הוא עוד יותר יפה. לקחנו לגן, ולא האמינו לי שאפשר לאכול את הזר. כל הצוות היה בהתלהבות, ואמא שלי אמרה שיש לך ידיים קסומות."},
+ {img:"rev/2.webp",he:"זה פשוט יופי מטורף! אין מילים! יש לך ידי זהב. יצירת מופת! בטוח יספיק לכולם!"},
+ {img:"rev/3.webp",he:"עשית לנו המון הנאה! לכולם. ודרך אגב, טעים מאוד."},
+ {img:"rev/4.webp",he:"יוליה! יופי וטעים! הבת בהתלהבות! תודה לך, יקירה!"},
+ {img:"rev/5.webp",he:"הזר נפלא! חי! תודה ענקית. כולם בהתלהבות! תודה, יוליה."},
+ {img:"rev/6.webp",he:"יוליה, איזה יופי יוצא דופן!!! סופר! יש לך ידי זהב!"},
+ {img:"rev/7.webp",he:"עשית אותו בדיוק כמו שרציתי! בדיוק לאישה צעירה. עדין, ובכל זאת לא חיוור!"},
+ {img:"rev/8.webp",he:"ממש מתחשק לטעום, אני מתאפקת עד מחר! את כזאת מוכשרת! כן, זו יצירת מופת!"},
+ {img:"rev/9.webp",he:"וואו!! סופר! את מוכשרת!"},
+ {img:"rev/10.webp",he:"וואו, וואו, וואו, סופר! תודה. היום בהפסקה הייתה חגיגה אמיתית, אי אפשר לתאר במילים את ההתרגשות של כולם."},
+ {img:"rev/11.webp",he:"וואו! זו האמת!!!"}
+];
 function renderReviews(){
   const t=T[lang], wall=document.getElementById("revWall"), sum=document.getElementById("revSummary");
   document.getElementById("reviews").hidden=REVIEWS.length===0;
   document.getElementById("menuRev").hidden=REVIEWS.length===0;
   sum.hidden=REVIEWS.length===0;
-  sum.innerHTML=`<span class="stars" aria-hidden="true">★★★★★</span><span>${REVIEWS.length} ${t.rev_count}</span>`;
-  wall.innerHTML=REVIEWS.map((r,i)=>`<figure class="rev-shot" style="--r:${[-1.5,1,-.5,1.5,-1][i%5]}deg"><img src="${r.img}" alt="" loading="lazy">${r.note?`<figcaption>${r.note}</figcaption>`:""}</figure>`).join("");
+  sum.innerHTML=`<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg><span>${t.rev_count}</span>`;
+  wall.innerHTML=REVIEWS.map((r,i)=>`<figure class="rev-shot" style="--r:${[-1.5,1,-.5,1.5,-1][i%5]}deg"><img src="${r.img}" alt="${t.rev_alt}" loading="lazy">${lang==="he"&&r.he?`<figcaption><small>${t.rev_tr}</small>${r.he}</figcaption>`:""}</figure>`).join("");
 }
 renderReviews();
 
