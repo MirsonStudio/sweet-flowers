@@ -486,10 +486,6 @@ html[dir="ltr"] .rev-nav svg{transform:scaleX(-1)}
 .jump:focus-visible{outline:3px solid var(--berry);outline-offset:3px}
 .jump svg{width:24px;height:24px;transition:transform .45s cubic-bezier(.3,1.4,.5,1);animation:nudge 2.2s ease-in-out infinite}
 .jump.up svg{transform:rotate(180deg);animation:none}
-.jump-rev{bottom:calc(96px + env(safe-area-inset-bottom,0px));opacity:0;pointer-events:none;transform:translateY(16px) scale(.9)}
-.jump-rev svg{animation:none}
-.jump-rev.show{opacity:.85;pointer-events:auto;transform:none}
-.jump-rev.show:hover,.jump-rev.show:focus-visible{opacity:1;transform:translateY(-3px)}
 .jump-t{font-size:.68rem;font-weight:700;line-height:1.1;text-align:center;max-width:52px}
 @keyframes nudge{50%{translate:0 4px}}
 html.qv-lock .jump{opacity:0;pointer-events:none}
@@ -935,10 +931,6 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--berry);dis
   </div>
 </main>
 <a class="btn primary order-bar wa" id="orderBar" target="_blank" rel="noopener" href="https://wa.me/972545311217" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg><span data-i="bar_order"></span></a>
-<button type="button" class="jump jump-rev" id="jumpRev" aria-label="" tabindex="-1" aria-hidden="true">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"/><path d="m12 8.2 1.1 2.2 2.4.3-1.8 1.7.5 2.4-2.2-1.2-2.2 1.2.5-2.4-1.8-1.7 2.4-.3z" fill="currentColor" stroke="none"/></svg>
-  <span class="jump-t"></span>
-</button>
 <button type="button" class="jump" id="jumpBtn" aria-label="">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
   <span class="jump-t"></span>
@@ -1365,7 +1357,7 @@ addEventListener("keydown",e=>{if(e.key==="Escape") closeQV();});
   qvPanel.addEventListener("touchend",e=>{if(y0==null)return;const dy=(e.changedTouches[0].clientY-y0);qvPanel.style.transform="";if(dy>110)closeQV();y0=null;});
 })();
 /* the big best-seller card also opens nothing - it has its own order row */
-function onLangCatalog(){if(typeof setAdLang==="function"&&typeof adVid!=="undefined"){setAdLang();syncAdSound();} if(typeof applyTheme==="function"&&typeof darkOn!=="undefined") applyTheme(darkOn,false); renderCatalog(); renderReels(); renderMenuCats(); if(typeof updateJump==="function") updateJump(true); if(typeof updateJumpRev==="function") updateJumpRev(true); if(typeof renderReviews==="function") renderReviews(); if(qvState) renderQV();}
+function onLangCatalog(){if(typeof setAdLang==="function"&&typeof adVid!=="undefined"){setAdLang();syncAdSound();} if(typeof applyTheme==="function"&&typeof darkOn!=="undefined") applyTheme(darkOn,false); renderCatalog(); renderReels(); renderMenuCats(); if(typeof updateJump==="function") updateJump(true); if(typeof renderReviews==="function") renderReviews(); if(qvState) renderQV();}
 
 /* ---- reviews: add real screenshots here, e.g. {img:"rev/1.jpg"} ---- */
 const REVIEWS=[
@@ -1446,32 +1438,26 @@ renderReviews();
 })();
 /* ---- floating arrow: down to the price list, then back up to the top ---- */
 const jumpBtn=document.getElementById("jumpBtn"), priceSec=document.getElementById("boxes");
-let jumpUp=null;
+let jumpMode=null;
+/* one smart button: "to prices" at the top, "to reviews" while browsing products, "up" from the reviews on */
+const revSec=document.getElementById("reviews");
 function updateJump(force){
-  const up=priceSec.getBoundingClientRect().top<innerHeight*.35;
-  if(up===jumpUp&&!force) return; jumpUp=up;
-  const t=T[lang]; jumpBtn.classList.toggle("up",up);
-  jumpBtn.querySelector(".jump-t").textContent=up?t.jump_up:t.jump_down;
-  jumpBtn.setAttribute("aria-label",up?t.jump_up:t.jump_down);
+  const h=innerHeight, pTop=priceSec.getBoundingClientRect().top;
+  const rTop=revSec.hidden?-1:revSec.getBoundingClientRect().top;
+  const mode=pTop>=h*.35?"down":(rTop>h*.6?"rev":"up");
+  if(mode===jumpMode&&!force) return; jumpMode=mode;
+  const t=T[lang], label=mode==="down"?t.jump_down:mode==="rev"?t.jump_rev:t.jump_up;
+  jumpBtn.classList.toggle("up",mode==="up");
+  jumpBtn.querySelector(".jump-t").textContent=label;
+  jumpBtn.setAttribute("aria-label",label);
 }
-/* while browsing the products: a second button straight to the reviews */
-const jumpRev=document.getElementById("jumpRev"), revSec=document.getElementById("reviews");
-let revOn=null;
-function updateJumpRev(force){
-  const r=priceSec.getBoundingClientRect(), on=!revSec.hidden&&r.top<innerHeight*.35&&r.bottom>innerHeight*.5;
-  if(force){const t=T[lang]; jumpRev.querySelector(".jump-t").textContent=t.jump_rev; jumpRev.setAttribute("aria-label",t.jump_rev);}
-  if(on===revOn&&!force) return; revOn=on;
-  jumpRev.classList.toggle("show",on); jumpRev.setAttribute("aria-hidden",!on); jumpRev.tabIndex=on?0:-1;
-}
-jumpRev.addEventListener("click",()=>revSec.scrollIntoView({behavior:reduce?"auto":"smooth"}));
-addEventListener("scroll",()=>updateJumpRev(),{passive:true});
-addEventListener("resize",()=>updateJumpRev(true));
 addEventListener("scroll",()=>updateJump(),{passive:true});
 jumpBtn.addEventListener("click",()=>{
   const b=reduce?"auto":"smooth";
-  if(jumpUp) scrollTo({top:0,behavior:b}); else priceSec.scrollIntoView({behavior:b});
+  if(jumpMode==="up") scrollTo({top:0,behavior:b});
+  else (jumpMode==="rev"?revSec:priceSec).scrollIntoView({behavior:b});
 });
-updateJump(true); updateJumpRev(true);
+updateJump(true);
 
 /* ---- ad video in "what is zefir": Hebrew ad for Hebrew, Russian ad for Russian ---- */
 const adVid=document.getElementById("adVid"), adSound=document.getElementById("adSound");
