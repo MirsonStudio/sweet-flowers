@@ -1397,6 +1397,31 @@ shotBox.addEventListener("click",e=>{if(e.target===shotBox) closeShot();});
 shotBox.querySelector(".rs-prev").onclick=()=>{shotI=(shotI-1+REVIEWS.length)%REVIEWS.length; showShot();};
 shotBox.querySelector(".rs-next").onclick=()=>{shotI=(shotI+1)%REVIEWS.length; showShot();};
 addEventListener("keydown",e=>{if(shotBox.hidden) return; if(e.key==="Escape") closeShot();});
+/* review strip moves to the next screenshot by itself every 1.5s (pauses while touched, hovered or off screen) */
+(function(){
+  const w=document.getElementById("revWall"), sec=document.getElementById("reviews");
+  let vis=false, hold=false, timer=null, resume=null;
+  function step(){
+    if(!vis||hold||!shotBox.hidden||document.hidden) return;
+    const cards=[...w.children]; if(cards.length<2) return;
+    const rtl=document.documentElement.dir==="rtl", wr=w.getBoundingClientRect();
+    const mid=wr.left+wr.width/2;
+    let cur=0, best=1e9; cards.forEach((c,i)=>{const r=c.getBoundingClientRect(), d=Math.abs(r.left+r.width/2-mid); if(d<best){best=d;cur=i;}});
+    const max=Math.abs(w.scrollWidth-w.clientWidth), atEnd=Math.abs(Math.abs(w.scrollLeft)-max)<4;
+    if(atEnd||cur===cards.length-1){ w.scrollTo({left:0,behavior:"smooth"}); return; }
+    const next=cards[cur+1].getBoundingClientRect();
+    w.scrollBy({left:next.left+next.width/2-mid,behavior:"smooth"});
+  }
+  function start(){ if(!timer&&!reduce) timer=setInterval(step,1500); }
+  function pause(ms){ hold=true; clearTimeout(resume); resume=setTimeout(()=>{hold=false;},ms||4000); }
+  new IntersectionObserver(es=>{vis=es[0].isIntersecting;},{threshold:.3}).observe(sec);
+  w.addEventListener("pointerdown",()=>pause(5000)); w.addEventListener("touchstart",()=>pause(5000),{passive:true});
+  w.addEventListener("wheel",()=>pause(5000),{passive:true});
+  w.addEventListener("mouseenter",()=>{hold=true;clearTimeout(resume);}); w.addEventListener("mouseleave",()=>pause(800));
+  w.addEventListener("focusin",()=>{hold=true;clearTimeout(resume);}); w.addEventListener("focusout",()=>pause(800));
+  ["revPrev","revNext"].forEach(id=>document.getElementById(id).addEventListener("click",()=>pause(5000)));
+  start();
+})();
 /* arrows for the review strip */
 ["revPrev","revNext"].forEach((id,k)=>document.getElementById(id).onclick=()=>{
   const w=document.getElementById("revWall"), step=w.clientWidth*.8, rtl=document.documentElement.dir==="rtl";
