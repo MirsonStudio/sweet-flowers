@@ -879,6 +879,19 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--berry);dis
       </div>
     </div>
   </section>
+  <div class="scallop" style="--c:var(--petal-2)"></div>
+  <section id="reviews" class="reviews-sec" hidden>
+    <div class="wrap">
+      <div class="kicker" data-i="rev_kicker"></div>
+      <h2 class="sec-title" data-i="rev_title"></h2>
+      <div class="rev-summary" id="revSummary" hidden></div>
+      <div class="rev-strip">
+        <button type="button" class="rev-nav" id="revPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+        <div class="rev-wall" id="revWall"></div>
+        <button type="button" class="rev-nav" id="revNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+      </div>
+    </div>
+  </section>
   <div class="scallop" style="--c:var(--cream)"></div>
 
   <section id="contact">
@@ -910,18 +923,6 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--berry);dis
     <div class="qv-back"></div>
     <div class="qv-panel" id="qvPanel" role="dialog" aria-modal="true" aria-labelledby="qvTitle"></div>
   </div>
-  <section id="reviews" class="reviews-sec" hidden>
-    <div class="wrap">
-      <div class="kicker" data-i="rev_kicker"></div>
-      <h2 class="sec-title" data-i="rev_title"></h2>
-      <div class="rev-summary" id="revSummary" hidden></div>
-      <div class="rev-strip">
-        <button type="button" class="rev-nav" id="revPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
-        <div class="rev-wall" id="revWall"></div>
-        <button type="button" class="rev-nav" id="revNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
-      </div>
-    </div>
-  </section>
   <div class="rev-shotbox" id="revShot" hidden role="dialog" aria-modal="true">
     <div class="rs-inner"><img alt=""><div class="rs-bar"><button type="button" class="rs-prev" aria-label="‹">›</button><span class="rs-n" dir="ltr"></span><button type="button" class="rs-next" aria-label="›">‹</button></div></div>
     <button type="button" class="rs-x" aria-label="×">×</button>
