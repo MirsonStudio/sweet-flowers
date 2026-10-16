@@ -485,7 +485,10 @@ html[dir="ltr"] .rev-nav svg{transform:scaleX(-1)}
 .jump:hover,.jump:focus-visible{opacity:1;background:var(--berry);transform:translateY(-3px)}
 .jump:focus-visible{outline:3px solid var(--berry);outline-offset:3px}
 .jump svg{width:24px;height:24px;transition:transform .45s cubic-bezier(.3,1.4,.5,1);animation:nudge 2.2s ease-in-out infinite}
-.jump.up svg{transform:rotate(180deg);animation:none}
+.jump .ji{display:none}
+.jump[data-mode="down"] .ji-down,.jump[data-mode="rev"] .ji-rev,.jump[data-mode="up"] .ji-up{display:block}
+.jump .ji-up{animation:none}
+.jump .ji-down,.jump .ji-rev{animation:nudge 2.2s ease-in-out infinite}
 .jump-t{font-size:.68rem;font-weight:700;line-height:1.1;text-align:center;max-width:52px}
 @keyframes nudge{50%{translate:0 4px}}
 html.qv-lock .jump{opacity:0;pointer-events:none}
@@ -932,7 +935,9 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--berry);dis
 </main>
 <a class="btn primary order-bar wa" id="orderBar" target="_blank" rel="noopener" href="https://wa.me/972545311217" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg><span data-i="bar_order"></span></a>
 <button type="button" class="jump" id="jumpBtn" aria-label="">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+  <svg class="ji ji-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.6V4.5a1 1 0 0 1 1-1h8.1l8 8a1.4 1.4 0 0 1 0 2l-7.1 7.1a1.4 1.4 0 0 1-2 0z"/><circle cx="8.3" cy="8.3" r="1.6" fill="currentColor" stroke="none"/></svg>
+  <svg class="ji ji-rev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3.5 20.5l1.4-4.8A8.5 8.5 0 1 1 21 11.5z"/><path d="m12.2 7.3 1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.3 1.3.4-2.6-1.9-1.8 2.7-.4z" fill="currentColor" stroke="none"/></svg>
+  <svg class="ji ji-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
   <span class="jump-t"></span>
 </button>
 <footer><span class="script">Sweet Flowers</span><span data-i="footer"></span></footer>
@@ -1447,7 +1452,7 @@ function updateJump(force){
   const mode=pTop>=h*.35?"down":(rTop>h*.6?"rev":"up");
   if(mode===jumpMode&&!force) return; jumpMode=mode;
   const t=T[lang], label=mode==="down"?t.jump_down:mode==="rev"?t.jump_rev:t.jump_up;
-  jumpBtn.classList.toggle("up",mode==="up");
+  jumpBtn.dataset.mode=mode;
   jumpBtn.querySelector(".jump-t").textContent=label;
   jumpBtn.setAttribute("aria-label",label);
 }
