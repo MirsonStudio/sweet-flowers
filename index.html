@@ -416,15 +416,17 @@ a.rsrc{text-decoration:none}
 .rev-strip{position:relative;display:flex;align-items:center;gap:10px}
 .rev-wall{flex:1;min-width:0;display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 18px;scrollbar-width:none;-webkit-mask:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent)}
 .rev-wall::-webkit-scrollbar{display:none}
-.rev-card{flex:0 0 min(300px,78%);margin:0;scroll-snap-align:center;display:flex;flex-direction:column;justify-content:space-between;gap:14px;padding:20px 20px 14px;border-radius:26px;background:var(--card);box-shadow:var(--shadow);position:relative}
-.rev-card::before{content:"\201D";position:absolute;top:-6px;inset-inline-start:16px;font-family:Georgia,serif;font-size:4rem;line-height:1;color:var(--rose-2);opacity:.7}
-.rev-card blockquote{margin:0;padding-top:14px;font-size:1rem;line-height:1.55;color:var(--ink)}
-.rev-card figcaption{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px dashed var(--line);padding-top:10px}
-.rev-card small{font-size:.78rem;color:var(--muted)}
-.rev-open{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;font-size:.85rem;font-weight:600;color:var(--berry);box-shadow:inset 0 0 0 1.5px var(--rose-2)}
-.rev-open svg{width:15px;height:15px;color:#25d366}
-.rev-open:hover{background:var(--petal-2)}
+.rev-card{flex:0 0 230px;margin:0;scroll-snap-align:center;display:flex;flex-direction:column;gap:10px;padding:8px;border-radius:24px;background:var(--card);box-shadow:var(--shadow)}
+.rev-open{all:unset;cursor:zoom-in;position:relative;display:block;border-radius:18px;overflow:hidden;height:300px;background:#f3eee6}
+.rev-open img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .4s}
+.rev-open:hover img{transform:scale(1.03)}
+.rev-open::after{content:"";position:absolute;inset:auto 0 0;height:60px;background:linear-gradient(transparent,rgba(243,238,230,.95))}
+.rev-zoom{position:absolute;z-index:1;bottom:10px;inset-inline-end:10px;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--berry);color:var(--cream);box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.rev-zoom svg{width:18px;height:18px}
+.rev-card figcaption{padding:0 6px 6px;font-size:.88rem;line-height:1.5;color:var(--ink)}
+.rev-card small{display:block;font-size:.74rem;color:var(--muted)}
 .rev-open:focus-visible,.rev-nav:focus-visible{outline:3px solid var(--berry);outline-offset:2px}
+@media (max-width:640px){.rev-card{flex-basis:200px}.rev-open{height:260px}}
 .rev-nav{all:unset;cursor:pointer;flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--card);color:var(--berry);box-shadow:var(--shadow)}
 .rev-nav svg{width:20px;height:20px}
 html[dir="ltr"] .rev-nav svg{transform:scaleX(-1)}
@@ -1369,8 +1371,7 @@ function renderReviews(){
   document.getElementById("menuRev").hidden=REVIEWS.length===0;
   sum.hidden=REVIEWS.length===0;
   sum.innerHTML=`${WA_ICON}<span>${t.rev_count}</span>`;
-  wall.innerHTML=REVIEWS.map((r,i)=>`<figure class="rev-card"><blockquote dir="auto">${lang==="he"?r.he:r.ru}</blockquote>
-    <figcaption>${lang==="he"?`<small>${t.rev_tr}</small>`:"<small></small>"}<button type="button" class="rev-open" data-i="${i}">${WA_ICON}<span>${t.rev_shot}</span></button></figcaption></figure>`).join("");
+  wall.innerHTML=REVIEWS.map((r,i)=>`<figure class="rev-card"><button type="button" class="rev-open" data-i="${i}" aria-label="${t.rev_alt}"><img src="${r.img}" alt="${t.rev_alt}" loading="lazy"><span class="rev-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5M11 8.5v5M8.5 11h5"/></svg></span></button>${lang==="he"?`<figcaption><small>${t.rev_tr}</small>${r.he}</figcaption>`:""}</figure>`).join("");
   wall.querySelectorAll(".rev-open").forEach(b=>b.onclick=()=>openShot(+b.dataset.i,b));
   document.getElementById("revPrev").setAttribute("aria-label",t.rev_prev);
   document.getElementById("revNext").setAttribute("aria-label",t.rev_next);
