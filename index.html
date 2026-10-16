@@ -593,6 +593,9 @@ html.qv-lock{overflow:hidden}
 .phone .num{font-family:var(--display-he);font-size:2.2rem;font-weight:700;direction:ltr;unicode-bidi:isolate;user-select:all;color:var(--berry-ink);font-variant-numeric:tabular-nums;line-height:1.1}
 .phone .row{display:flex;flex-wrap:wrap;gap:10px}
 .phone .btn{padding:11px 18px;font-size:.95rem}
+.phone .wa-only{margin:0;color:var(--muted);line-height:1.5}
+.phone .btn.wa-big{padding:15px 24px;font-size:1.1rem;width:100%;justify-content:center;box-sizing:border-box}
+.phone .btn.wa-big svg{width:22px;height:22px}
 .copy{all:unset;cursor:pointer;padding:11px 18px;border-radius:99px;box-shadow:inset 0 0 0 2px var(--line);font-weight:600;font-size:.95rem;color:var(--ink)}
 @media (max-width:820px){.contact{grid-template-columns:1fr}}
 footer{position:relative;z-index:1;padding-block:44px 60px;color:var(--muted);font-size:.92rem;text-align:center}
@@ -910,10 +913,9 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--berry);dis
         </div>
         <div class="phone">
           <div class="who" data-i="ct_who"></div>
-          <div class="num" id="phoneNum">054-531-1217</div>
+          <p class="wa-only" data-i="ct_wa_only"></p>
           <div class="row">
-            <a class="btn primary wa" href="https://wa.me/972545311217" target="_blank" rel="noopener"><span>WhatsApp</span></a>
-            <button class="copy" type="button" id="copyBtn" data-i="copy"></button>
+            <a class="btn primary wa wa-big" href="https://wa.me/972545311217" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg><span data-i="cta_wa"></span></a>
           </div>
         </div>
       </div>
@@ -961,7 +963,7 @@ he:{
  off:"‎-15%",was:"",best:"הכי נמכרת",per_unit:"ליחידה",p5_k:"הלהיט של יוליה",p5_t:"קופסת מתנה גדולה",p5_d:"פרחי זפיר גדולים, ניצנים ועלים, מסודרים ביד בקופסה לבנה עם חלון שקוף. מתנה שפותחים ונשארים בלי מילים.",p5_f1:"הרכב וגוונים לבחירה",p5_f2:"קופסה עם חלון שקוף",p5_f3:"מספיק לחלוק עם כולם",p6_k:"הכי גדולה",p6_t:"קופסת אקווריום 30×30",p6_d:"קופסה מרובעת וגדולה, 30 על 30 ס״מ, מלאה עד הסוף בפרחי זפיר וניצנים. שולחן מתוק שלם בקופסה אחת.",p6_f1:"30×30 ס״מ",p6_f2:"הרכב וגוונים לבחירה",p6_f3:"מושלמת לאירוע גדול",p7_k:"בוחרים גודל",p7_t:"זר עטוף",p7_d:"ענן של פרחי זפיר, עטוף בנייר ורוד וסרט מנצנץ. המחיר נקבע לפי קוטר הבסיס של הזר.",size_label:"קוטר הבסיס:",card_add:"להוסיף ברכה לכרטיס",card_ph:"למשל: מזל טוב, אמא! אוהבים המון",card_hint:"הברכה תיכנס להודעה ליוליה, והיא תכתוב אותה על הכרטיס.",msg_card:"ברכה לכרטיס:",bar_order:"להזמנה בוואטסאפ",lead_strip:"שימו לב: מזמינים לפחות שבועיים לפני האירוע",lead_note:"חשוב: כל זר מוכן בעבודת יד, לכן מזמינים לפחות שבועיים לפני האירוע.",rev_kicker:"מה אומרים",rev_title:"לקוחות מספרים",rev_empty:"כאן יופיעו צילומי מסך של תגובות אמיתיות מלקוחות של יוליה. בינתיים אפשר לראות את התגובות באינסטגרם.",rev_cta:"לתגובות באינסטגרם",rev_count:"צילומי מסך אמיתיים מהוואטסאפ של יוליה",rev_tr:"בתרגום מרוסית",rev_shot:"צילום מסך",rev_prev:"הקודם",rev_next:"הבא",rev_alt:"צילום מסך של תגובת לקוחה בוואטסאפ",reels_title:"מקרוב יותר",reels_text:"ככה הזרים של יוליה נראים כשהם מגיעים אליכם.",reel1:"זר עטוף",reel2:"זר בקופסת כובע",reel3:"קופסת מתנה גדולה",watch_ig:"צפו באינסטגרם",watch_tt:"צפו בטיקטוק",sound:"סאונד",cat_all:"הכל",cat_box:"קופסאות",cat_bouquet:"זרים",cat_small:"מתנות קטנות",from:"החל מ-",details:"פרטים והזמנה",close:"סגירה",all_title:"כל המוצרים",in_photo:"בתמונה:",cm:"ס״מ",size_word:"גודל",order:"להזמנה",msg_hi:"היי יוליה! התאהבתי בפרחים שלך ואשמח להזמין:",msg_total:"סה״כ",msg_size:"מחיר לפי גודל",msg_date:"הזמן הכי מתאים עבורי לקבל את הזר:",msg_colors:"הצבעים שהכי ישמחו את הלב:",msg_end:"תודה, מחכה לזה בקוצר רוח",sale:"15% הנחה על כל הקופסאות",box_note:"המחירים בשקלים. בגלל עבודת היד, מזמינים לפחות שבועיים לפני האירוע.",
  soc_kicker:"עוד פרחים",soc_title:"עקבו אחרי יוליה",soc_text:"הזרים החדשים עולים קודם לאינסטגרם ולטיקטוק. שווה לעקוב ולקבל השראה לאירוע הבא.",
  ct_title:"בואו נתכנן את הזר שלכם",ct_text:"ההזמנות רק בהודעה. כתבו ליוליה בוואטסאפ על האירוע, הצבעים והתאריך, והיא תחזור אליכם עם הצעה.",pay_title:"אפשרויות תשלום:",pay_cash:"מזומן",
- ct_who:"יוליה",copy:"העתקת מספר",copied:"המספר הועתק",
+ ct_who:"יוליה",ct_wa_only:"הזמנות ושאלות רק בהודעת וואטסאפ.",copy:"העתקת מספר",copied:"המספר הועתק",
  footer:"יוליה · פרחי זפיר בעבודת יד",
  wa_msg:"שלום יוליה, אשמח להזמין זר זפיר",
  steps:[
@@ -1000,7 +1002,7 @@ ru:{
  off:"‎-15%",was:"",best:"Хит продаж",per_unit:"за штуку",p5_k:"Хит Юлии",p5_t:"Большая подарочная коробка",p5_d:"Крупные зефирные цветы, бутоны и листики, собранные вручную в белой коробке с прозрачным окошком. Подарок, от которого захватывает дух.",p5_f1:"Состав и цвета на выбор",p5_f2:"Коробка с прозрачным окошком",p5_f3:"Хватит, чтобы угостить всех",p6_k:"Самая большая",p6_t:"Коробка-аквариум 30×30",p6_d:"Большая квадратная коробка 30 на 30 см, до краёв наполненная зефирными цветами и бутонами. Целый сладкий стол в одной коробке.",p6_f1:"30×30 см",p6_f2:"Состав и цвета на выбор",p6_f3:"Для большого праздника",p7_k:"Выберите размер",p7_t:"Букет в упаковке",p7_d:"Облако зефирных цветов в розовой упаковке с переливающейся лентой. Цена зависит от размера основы букета.",size_label:"Размер основы:",card_add:"Добавить текст для открытки",card_ph:"Например: С днём рождения, мама! Любим тебя",card_hint:"Текст попадёт в сообщение Юлии, и она напишет его на открытке.",msg_card:"Текст для открытки:",bar_order:"Заказать в WhatsApp",lead_strip:"Заказ минимум за 2 недели до праздника",lead_note:"Важно: каждый букет делается вручную, поэтому заказ минимум за 2 недели до праздника.",rev_kicker:"Отзывы",rev_title:"Говорят клиенты",rev_empty:"Здесь появятся скриншоты настоящих отзывов клиентов Юлии. А пока отзывы можно посмотреть в Instagram.",rev_cta:"Отзывы в Instagram",rev_count:"настоящие скриншоты из WhatsApp Юлии",rev_tr:"",rev_shot:"Скриншот",rev_prev:"Назад",rev_next:"Дальше",rev_alt:"Скриншот отзыва клиентки в WhatsApp",reels_title:"Поближе",reels_text:"Так выглядят букеты Юлии, когда приезжают к вам.",reel1:"Букет в упаковке",reel2:"Букет в шляпной коробке",reel3:"Большая подарочная коробка",watch_ig:"Смотреть в Instagram",watch_tt:"Смотреть в TikTok",sound:"Звук",cat_all:"Все",cat_box:"Коробки",cat_bouquet:"Букеты",cat_small:"Маленькие подарки",from:"от",details:"Подробнее и заказ",close:"Закрыть",all_title:"Все товары",in_photo:"На фото:",cm:"см",size_word:"размер",order:"Заказать",msg_hi:"Юлия, здравствуйте! Ваши цветы покорили моё сердце, хочу заказать:",msg_total:"итого",msg_size:"цена по размеру",msg_date:"Самое удобное для меня время получить букет:",msg_colors:"Цвета, которые порадуют сердце:",msg_end:"Спасибо, жду с нетерпением",sale:"Скидка 15% на все коробки",box_note:"Цены в шекелях. Каждая композиция — ручная работа с душой, поэтому заказ минимум за 2 недели.",
  soc_kicker:"Больше цветов",soc_title:"Подписывайтесь на Юлию",soc_text:"Новые букеты сначала появляются в Instagram и TikTok. Подпишитесь и вдохновляйтесь к следующему празднику.",
  ct_title:"Давайте соберём ваш букет",ct_text:"Заказы только сообщением. Напишите Юлии в WhatsApp о празднике, цветах и дате, и она пришлёт предложение.",pay_title:"Оплата:",pay_cash:"Наличные",
- ct_who:"Юлия",copy:"Скопировать номер",copied:"Номер скопирован",
+ ct_who:"Юлия",ct_wa_only:"Заказы и вопросы только в сообщениях WhatsApp.",copy:"Скопировать номер",copied:"Номер скопирован",
  footer:"Юлия · зефирные цветы ручной работы",
  wa_msg:"Здравствуйте, Юлия! Хочу заказать зефирный букет",
  steps:[
@@ -1148,12 +1150,6 @@ document.querySelectorAll(".prod[data-key]").forEach(card=>{
   card.querySelector(".plus").addEventListener("click",()=>{out.value=Math.min(20,(+out.value||1)+1);updateOrders();});
 });
 
-document.getElementById("copyBtn").addEventListener("click",e=>{
-  const btn=e.currentTarget;
-  const done=()=>{btn.textContent=T[lang].copied; setTimeout(()=>btn.textContent=T[lang].copy,1800);};
-  const fallback=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById("phoneNum"));const s=getSelection();s.removeAllRanges();s.addRange(r);};
-  try{navigator.clipboard.writeText("0545311217").then(done,fallback);}catch(err){fallback();}
-});
 
 /* ---- vertical videos at the end of the steps ----
    put a video file in src (e.g. "vid/1.mp4") to switch a slot from photo+link to a real video */
