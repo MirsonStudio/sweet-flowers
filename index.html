@@ -1672,4 +1672,24 @@ const DEPTH="data:image/webp;base64,UklGRvoJAABXRUJQVlA4IO4JAADQlQCdASoTAW4BPlEe
 })();
 </script>
 
+<script>
+/* visit statistics (GoatCounter, no cookies) + which order buttons get clicked */
+document.addEventListener("click",e=>{
+  const a=e.target.closest("a"); if(!a||!window.goatcounter||!window.goatcounter.count) return;
+  const h=a.getAttribute("href")||""; let ev="";
+  if(h.includes("wa.me")){
+    let what="general";
+    if(a.id==="orderBar") what="sticky-button";
+    else if(a.closest("#qvPanel")&&typeof qvState!=="undefined"&&qvState) what=qvState.id+(qvState.size?"-"+qvState.size:"");
+    else if(a.closest(".showcase")) what="p5-bestseller";
+    else if(a.closest("#contact")) what="contact";
+    else if(a.closest("header")) what="header";
+    else if(a.closest(".hero,#top")) what="hero";
+    ev="order/"+what;
+  } else if(h.includes("instagram.com")) ev="social/instagram";
+  else if(h.includes("tiktok.com")) ev="social/tiktok";
+  if(ev) window.goatcounter.count({path:ev,title:ev,event:true});
+},true);
+</script>
+<script data-goatcounter="https://sweetflowers.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body></html>
