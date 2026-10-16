@@ -486,6 +486,10 @@ html[dir="ltr"] .rev-nav svg{transform:scaleX(-1)}
 .jump:focus-visible{outline:3px solid var(--berry);outline-offset:3px}
 .jump svg{width:24px;height:24px;transition:transform .45s cubic-bezier(.3,1.4,.5,1);animation:nudge 2.2s ease-in-out infinite}
 .jump.up svg{transform:rotate(180deg);animation:none}
+.jump-rev{bottom:calc(96px + env(safe-area-inset-bottom,0px));opacity:0;pointer-events:none;transform:translateY(16px) scale(.9)}
+.jump-rev svg{animation:none}
+.jump-rev.show{opacity:.85;pointer-events:auto;transform:none}
+.jump-rev.show:hover,.jump-rev.show:focus-visible{opacity:1;transform:translateY(-3px)}
 .jump-t{font-size:.68rem;font-weight:700;line-height:1.1;text-align:center;max-width:52px}
 @keyframes nudge{50%{translate:0 4px}}
 html.qv-lock .jump{opacity:0;pointer-events:none}
@@ -931,6 +935,10 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--berry);dis
   </div>
 </main>
 <a class="btn primary order-bar wa" id="orderBar" target="_blank" rel="noopener" href="https://wa.me/972545311217" aria-hidden="true" tabindex="-1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg><span data-i="bar_order"></span></a>
+<button type="button" class="jump jump-rev" id="jumpRev" aria-label="" tabindex="-1" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-5A8 8 0 1 1 21 12z"/><path d="m12 8.2 1.1 2.2 2.4.3-1.8 1.7.5 2.4-2.2-1.2-2.2 1.2.5-2.4-1.8-1.7 2.4-.3z" fill="currentColor" stroke="none"/></svg>
+  <span class="jump-t"></span>
+</button>
 <button type="button" class="jump" id="jumpBtn" aria-label="">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
   <span class="jump-t"></span>
@@ -941,7 +949,7 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--berry);dis
 <script>
 const T = {
 he:{
- nav_about:"מה זה זפיר",sp_kicker:"כל הקודם זוכה",sp_title:"זרים מיוחדים, יחידים במינם",sp_lead:"מהפרחים שנשארו מהזמנות יוליה מרכיבה לפעמים זר נוסף. יש רק אחד מכל זר.",sp_badge:"יש רק אחד",sp_default:"זר מיוחד",sp_until:"זמין עד",sp_desc:"תיאור (לא חובה)",sp_desc_ph:"אפשר לכתוב ברוסית או בעברית",sp_tr_note:"השם והתיאור יתורגמו אוטומטית לעברית ולרוסית כשמפרסמים.",sp_first:"כל הקודם זוכה",sp_price_msg:"מחיר בהודעה",sp_msg:"זר מיוחד מהאתר, פורסם ב-",sp_admin:"הוספת זר מיוחד",sp_admin_title:"זר מיוחד חדש",sp_admin_help:"מצלמים את הזר ומעלים. הוא יופיע באתר ויוסתר לבד אחרי מספר הימים שבוחרים.",sp_photo:"צילום או בחירת תמונה",sp_name:"שם (לא חובה)",sp_price:"מחיר",sp_days:"כמה זמן להציג",sp_days_u:"ימים",sp_publish:"פרסום באתר",sp_busy:"מתרגם, מעלה ומפרסם...",sp_now:"מוצגים עכשיו",sp_left:"עוד {n} ימים",sp_remove:"הסרה",sp_delete:"מחיקה",sp_sure:"למחוק את הזר מהאתר?",sp_yes:"כן, למחוק",sp_no:"ביטול",sp_deleting:"מוחק...",sp_err:"משהו השתבש. נסו שוב בעוד רגע.",sp_err_rights:"צריך הרשאת עריכה לאתר כדי לפרסם.",sp_err_big:"התמונה גדולה מדי.",fill_label:"מילוי בזפיר",fill_none:"בלי",fill_none_s:"מילוי",fill_one:"סוג",fill_many:"סוגים",fill_hint:"בגודל הזה אפשר עד {n} {w} מילוי, בכל הזפירים. למשל שוקולד, שוקולד חלב, קוקוס, קוביות צבעוניות ועוד. את הטעמים והצבעים סוגרים עם יוליה בהודעה.",fill_msg:"עם מילוי: {n} {w} (נסגור את הטעמים בהודעה)",fill_msg_none:"בלי מילוי",ad_sound:"הפעלת סאונד",ad_replay:"מההתחלה",ad_mute:"השתקה",theme_dark:"רקע כהה",theme_light:"רקע בהיר",jump_down:"למחירון",jump_up:"למעלה",menu:"תפריט",menu_shop:"לקנות",menu_site:"באתר",menu_best:"הלהיט של יוליה",menu_best_s:"קופסת המתנה הגדולה",menu_all_s:"כל הקופסאות והזרים",menu_social:"אינסטגרם וטיקטוק",nav_steps:"איך מכינים",nav_boxes:"מחירים",nav_contact:"הזמנה",
+ nav_about:"מה זה זפיר",sp_kicker:"כל הקודם זוכה",sp_title:"זרים מיוחדים, יחידים במינם",sp_lead:"מהפרחים שנשארו מהזמנות יוליה מרכיבה לפעמים זר נוסף. יש רק אחד מכל זר.",sp_badge:"יש רק אחד",sp_default:"זר מיוחד",sp_until:"זמין עד",sp_desc:"תיאור (לא חובה)",sp_desc_ph:"אפשר לכתוב ברוסית או בעברית",sp_tr_note:"השם והתיאור יתורגמו אוטומטית לעברית ולרוסית כשמפרסמים.",sp_first:"כל הקודם זוכה",sp_price_msg:"מחיר בהודעה",sp_msg:"זר מיוחד מהאתר, פורסם ב-",sp_admin:"הוספת זר מיוחד",sp_admin_title:"זר מיוחד חדש",sp_admin_help:"מצלמים את הזר ומעלים. הוא יופיע באתר ויוסתר לבד אחרי מספר הימים שבוחרים.",sp_photo:"צילום או בחירת תמונה",sp_name:"שם (לא חובה)",sp_price:"מחיר",sp_days:"כמה זמן להציג",sp_days_u:"ימים",sp_publish:"פרסום באתר",sp_busy:"מתרגם, מעלה ומפרסם...",sp_now:"מוצגים עכשיו",sp_left:"עוד {n} ימים",sp_remove:"הסרה",sp_delete:"מחיקה",sp_sure:"למחוק את הזר מהאתר?",sp_yes:"כן, למחוק",sp_no:"ביטול",sp_deleting:"מוחק...",sp_err:"משהו השתבש. נסו שוב בעוד רגע.",sp_err_rights:"צריך הרשאת עריכה לאתר כדי לפרסם.",sp_err_big:"התמונה גדולה מדי.",fill_label:"מילוי בזפיר",fill_none:"בלי",fill_none_s:"מילוי",fill_one:"סוג",fill_many:"סוגים",fill_hint:"בגודל הזה אפשר עד {n} {w} מילוי, בכל הזפירים. למשל שוקולד, שוקולד חלב, קוקוס, קוביות צבעוניות ועוד. את הטעמים והצבעים סוגרים עם יוליה בהודעה.",fill_msg:"עם מילוי: {n} {w} (נסגור את הטעמים בהודעה)",fill_msg_none:"בלי מילוי",ad_sound:"הפעלת סאונד",ad_replay:"מההתחלה",ad_mute:"השתקה",theme_dark:"רקע כהה",theme_light:"רקע בהיר",jump_down:"למחירון",jump_up:"למעלה",jump_rev:"חוות דעת",menu:"תפריט",menu_shop:"לקנות",menu_site:"באתר",menu_best:"הלהיט של יוליה",menu_best_s:"קופסת המתנה הגדולה",menu_all_s:"כל הקופסאות והזרים",menu_social:"אינסטגרם וטיקטוק",nav_steps:"איך מכינים",nav_boxes:"מחירים",nav_contact:"הזמנה",
  hero_eyebrow:"זפיר בעבודת יד · בסגנון רוסי",
  hero_title:"פרחים שאפשר לאכול",hero_script:"מאת יוליה",
  hero_text:"זרים וקופסאות של פרחי זפיר אווריריים: ורדים, אדמוניות והידרנגאות שיוליה מזליפה ביד אחד-אחד. ליום הולדת, לחתונה, לתודה, או סתם כי מגיע לכם.",
@@ -980,7 +988,7 @@ he:{
  ]
 },
 ru:{
- nav_about:"Что такое зефир",sp_kicker:"Кто первый, того и букет",sp_title:"Особые букеты в единственном экземпляре",sp_lead:"Из цветов, оставшихся после заказов, Юлия иногда собирает ещё один букет. Каждый в одном экземпляре.",sp_badge:"Всего один",sp_default:"Особый букет",sp_until:"Доступен до",sp_desc:"Описание (необязательно)",sp_desc_ph:"Можно писать по-русски или на иврите",sp_tr_note:"Название и описание автоматически переведутся на иврит и русский при публикации.",sp_first:"Кто первый, того и букет",sp_price_msg:"Цена в сообщении",sp_msg:"особый букет с сайта, опубликован",sp_admin:"Добавить особый букет",sp_admin_title:"Новый особый букет",sp_admin_help:"Сфотографируйте букет и загрузите. Он появится на сайте и скроется сам через выбранное число дней.",sp_photo:"Снять или выбрать фото",sp_name:"Название (необязательно)",sp_price:"Цена",sp_days:"Сколько показывать",sp_days_u:"дней",sp_publish:"Опубликовать",sp_busy:"Перевод, загрузка и публикация...",sp_now:"Сейчас на сайте",sp_left:"ещё {n} дн.",sp_remove:"Убрать",sp_delete:"Удалить",sp_sure:"Удалить букет с сайта?",sp_yes:"Да, удалить",sp_no:"Отмена",sp_deleting:"Удаляю...",sp_err:"Что-то пошло не так. Попробуйте ещё раз.",sp_err_rights:"Чтобы публиковать, нужен доступ к редактированию сайта.",sp_err_big:"Фото слишком большое.",fill_label:"Начинка в зефире",fill_none:"Без",fill_none_s:"начинки",fill_one:"вид",fill_many:"вида",fill_hint:"В этом размере можно до {n} {w} начинки во всех зефирках. Например шоколад, молочный шоколад, кокос, цветные кубики и не только. Вкусы и цвета обсудим с Юлией в сообщении.",fill_msg:"С начинкой: {n} {w} (вкусы обсудим в сообщении)",fill_msg_none:"Без начинки",ad_sound:"Включить звук",ad_replay:"Сначала",ad_mute:"Выключить звук",theme_dark:"Тёмный фон",theme_light:"Светлый фон",jump_down:"К ценам",jump_up:"Наверх",menu:"Меню",menu_shop:"Купить",menu_site:"На сайте",menu_best:"Хит Юлии",menu_best_s:"Большая подарочная коробка",menu_all_s:"Все коробки и букеты",menu_social:"Instagram и TikTok",nav_steps:"Как готовим",nav_boxes:"Цены",nav_contact:"Заказ",
+ nav_about:"Что такое зефир",sp_kicker:"Кто первый, того и букет",sp_title:"Особые букеты в единственном экземпляре",sp_lead:"Из цветов, оставшихся после заказов, Юлия иногда собирает ещё один букет. Каждый в одном экземпляре.",sp_badge:"Всего один",sp_default:"Особый букет",sp_until:"Доступен до",sp_desc:"Описание (необязательно)",sp_desc_ph:"Можно писать по-русски или на иврите",sp_tr_note:"Название и описание автоматически переведутся на иврит и русский при публикации.",sp_first:"Кто первый, того и букет",sp_price_msg:"Цена в сообщении",sp_msg:"особый букет с сайта, опубликован",sp_admin:"Добавить особый букет",sp_admin_title:"Новый особый букет",sp_admin_help:"Сфотографируйте букет и загрузите. Он появится на сайте и скроется сам через выбранное число дней.",sp_photo:"Снять или выбрать фото",sp_name:"Название (необязательно)",sp_price:"Цена",sp_days:"Сколько показывать",sp_days_u:"дней",sp_publish:"Опубликовать",sp_busy:"Перевод, загрузка и публикация...",sp_now:"Сейчас на сайте",sp_left:"ещё {n} дн.",sp_remove:"Убрать",sp_delete:"Удалить",sp_sure:"Удалить букет с сайта?",sp_yes:"Да, удалить",sp_no:"Отмена",sp_deleting:"Удаляю...",sp_err:"Что-то пошло не так. Попробуйте ещё раз.",sp_err_rights:"Чтобы публиковать, нужен доступ к редактированию сайта.",sp_err_big:"Фото слишком большое.",fill_label:"Начинка в зефире",fill_none:"Без",fill_none_s:"начинки",fill_one:"вид",fill_many:"вида",fill_hint:"В этом размере можно до {n} {w} начинки во всех зефирках. Например шоколад, молочный шоколад, кокос, цветные кубики и не только. Вкусы и цвета обсудим с Юлией в сообщении.",fill_msg:"С начинкой: {n} {w} (вкусы обсудим в сообщении)",fill_msg_none:"Без начинки",ad_sound:"Включить звук",ad_replay:"Сначала",ad_mute:"Выключить звук",theme_dark:"Тёмный фон",theme_light:"Светлый фон",jump_down:"К ценам",jump_up:"Наверх",jump_rev:"Отзывы",menu:"Меню",menu_shop:"Купить",menu_site:"На сайте",menu_best:"Хит Юлии",menu_best_s:"Большая подарочная коробка",menu_all_s:"Все коробки и букеты",menu_social:"Instagram и TikTok",nav_steps:"Как готовим",nav_boxes:"Цены",nav_contact:"Заказ",
  hero_eyebrow:"Зефир ручной работы · по-русски",
  hero_title:"Цветы, которые можно съесть",hero_script:"от Юлии",
  hero_text:"Букеты и коробочки из воздушных зефирных цветов: розы, пионы и гортензии, которые Юлия отсаживает вручную. На день рождения, свадьбу, в благодарность или просто так.",
@@ -1357,7 +1365,7 @@ addEventListener("keydown",e=>{if(e.key==="Escape") closeQV();});
   qvPanel.addEventListener("touchend",e=>{if(y0==null)return;const dy=(e.changedTouches[0].clientY-y0);qvPanel.style.transform="";if(dy>110)closeQV();y0=null;});
 })();
 /* the big best-seller card also opens nothing - it has its own order row */
-function onLangCatalog(){if(typeof setAdLang==="function"&&typeof adVid!=="undefined"){setAdLang();syncAdSound();} if(typeof applyTheme==="function"&&typeof darkOn!=="undefined") applyTheme(darkOn,false); renderCatalog(); renderReels(); renderMenuCats(); if(typeof updateJump==="function") updateJump(true); if(typeof renderReviews==="function") renderReviews(); if(qvState) renderQV();}
+function onLangCatalog(){if(typeof setAdLang==="function"&&typeof adVid!=="undefined"){setAdLang();syncAdSound();} if(typeof applyTheme==="function"&&typeof darkOn!=="undefined") applyTheme(darkOn,false); renderCatalog(); renderReels(); renderMenuCats(); if(typeof updateJump==="function") updateJump(true); if(typeof updateJumpRev==="function") updateJumpRev(true); if(typeof renderReviews==="function") renderReviews(); if(qvState) renderQV();}
 
 /* ---- reviews: add real screenshots here, e.g. {img:"rev/1.jpg"} ---- */
 const REVIEWS=[
@@ -1446,12 +1454,24 @@ function updateJump(force){
   jumpBtn.querySelector(".jump-t").textContent=up?t.jump_up:t.jump_down;
   jumpBtn.setAttribute("aria-label",up?t.jump_up:t.jump_down);
 }
+/* while browsing the products: a second button straight to the reviews */
+const jumpRev=document.getElementById("jumpRev"), revSec=document.getElementById("reviews");
+let revOn=null;
+function updateJumpRev(force){
+  const r=priceSec.getBoundingClientRect(), on=!revSec.hidden&&r.top<innerHeight*.35&&r.bottom>innerHeight*.5;
+  if(force){const t=T[lang]; jumpRev.querySelector(".jump-t").textContent=t.jump_rev; jumpRev.setAttribute("aria-label",t.jump_rev);}
+  if(on===revOn&&!force) return; revOn=on;
+  jumpRev.classList.toggle("show",on); jumpRev.setAttribute("aria-hidden",!on); jumpRev.tabIndex=on?0:-1;
+}
+jumpRev.addEventListener("click",()=>revSec.scrollIntoView({behavior:reduce?"auto":"smooth"}));
+addEventListener("scroll",()=>updateJumpRev(),{passive:true});
+addEventListener("resize",()=>updateJumpRev(true));
 addEventListener("scroll",()=>updateJump(),{passive:true});
 jumpBtn.addEventListener("click",()=>{
   const b=reduce?"auto":"smooth";
   if(jumpUp) scrollTo({top:0,behavior:b}); else priceSec.scrollIntoView({behavior:b});
 });
-updateJump(true);
+updateJump(true); updateJumpRev(true);
 
 /* ---- ad video in "what is zefir": Hebrew ad for Hebrew, Russian ad for Russian ---- */
 const adVid=document.getElementById("adVid"), adSound=document.getElementById("adSound");
